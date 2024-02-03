@@ -10,22 +10,8 @@ class Solution {
         String[] strArr1 = str1.split("");
         String[] strArr2 = str2.split("");
         
-        Map<String, Integer> strMap1 = new HashMap<>();
-        Map<String, Integer> strMap2 = new HashMap<>();
-        
-        for (int i=1; i<strArr1.length; i++) {
-            String str = strArr1[i-1] + strArr1[i];
-            if(str.matches("^[A-Z]*$")) {
-                strMap1.put(str, strMap1.getOrDefault(str, 0)+1);
-            }
-        }
-        
-        for (int i=1; i<strArr2.length; i++) {
-            String str = strArr2[i-1] + strArr2[i];
-            if(str.matches("^[A-Z]*$")) {
-                strMap2.put(str, strMap2.getOrDefault(str, 0)+1);
-            }
-        }
+        Map<String, Integer> strMap1 = getMap(strArr1);
+        Map<String, Integer> strMap2 = getMap(strArr2);
         
         if (strMap1.isEmpty() && strMap2.isEmpty()) return 65536;
         
@@ -71,5 +57,19 @@ class Solution {
         answer = (int)Math.floor((double)cnt1 / cnt2 * 65536);
         
         return answer;
+    }
+    
+    static Map<String, Integer> getMap(String[] strArr) {
+        Map<String, Integer> strMap = new HashMap<>();
+        
+        for (int i=1; i<strArr.length; i++) {
+            String str = strArr[i-1] + strArr[i];
+            
+            if(str.matches("^[A-Z]*$")) {
+                strMap.put(str, strMap.getOrDefault(str, 0)+1);
+            }
+        }
+        
+        return strMap;
     }
 }
