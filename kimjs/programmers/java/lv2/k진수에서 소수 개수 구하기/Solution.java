@@ -6,6 +6,7 @@ class Solution {
         
         String str = Integer.toString(n, k);
         
+        /********** code 1 **********/
         int start = 0, end = str.indexOf("0");
         while (start < str.length()) {
             if (end == -1) {
@@ -21,7 +22,9 @@ class Solution {
             start = end+1;
             end = str.indexOf("0", end+1);
         }
+        /****************************/
         
+        /********** code 2 **********/
         String[] strArr = str.split("0");
         
         for(String s : strArr) {
@@ -33,6 +36,7 @@ class Solution {
                 }
             }
         }
+        /****************************/
         
         return answer;
     }
